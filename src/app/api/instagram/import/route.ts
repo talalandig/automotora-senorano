@@ -8,7 +8,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'URL de Instagram inválida (debe contener instagram.com/p/)' }, { status: 400 });
     }
 
-    const apiUrl = `https://api.microlink.io/?url=${encodeURIComponent(url)}`;
+    // Limpiar parámetros extra (como ?img_index=1) que rompen la extracción
+    const cleanUrl = url.split('?')[0];
+
+    const apiUrl = `https://api.microlink.io/?url=${encodeURIComponent(cleanUrl)}`;
 
     const response = await fetch(apiUrl, { 
       headers: { 'User-Agent': 'Mozilla/5.0' } 
