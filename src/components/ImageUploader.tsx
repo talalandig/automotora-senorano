@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from "react"
 import { X, GripVertical, UploadCloud } from "lucide-react"
 
 export type ImageItem = {
@@ -11,15 +11,25 @@ export type ImageItem = {
   preview?: string
 }
 
+export interface ImageUploaderRef {
+  addItems: (items: ImageItem[]) => void
+}
+
 interface ImageUploaderProps {
   initialImages: string[]
   onChange: (items: ImageItem[]) => void
 }
 
-export default function ImageUploader({ initialImages, onChange }: ImageUploaderProps) {
+const ImageUploader = forwardRef<ImageUploaderRef, ImageUploaderProps>(({ initialImages, onChange }, ref) => {
   const [items, setItems] = useState<ImageItem[]>([])
   const [draggedId, setDraggedId] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  useImperativeHandle(ref, () => ({
+    addItems: (newItems: ImageItem[]) => {
+      setItems((prev) => [...prev, ...newItems])
+    }
+  }))
 
   // Use a ref to track if it's the first mount to avoid overriding items when component re-renders
   const initialized = useRef(false)
@@ -163,4 +173,6 @@ export default function ImageUploader({ initialImages, onChange }: ImageUploader
       )}
     </div>
   )
-}
+})
+
+export default ImageUploader

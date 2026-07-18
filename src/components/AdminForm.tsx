@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import ImageUploader, { ImageItem } from "./ImageUploader"
+import ImageUploader, { ImageItem, ImageUploaderRef } from "./ImageUploader"
 import { Search, ChevronDown, Check, Plus } from "lucide-react"
 
 const POPULAR_BRANDS = ["Volkswagen", "Suzuki", "Toyota", "Fiat", "Peugeot", "Chevrolet", "Nissan", "Renault", "Ford", "Hyundai", "Citroën", "Honda", "BMW", "Mercedes-Benz"]
@@ -25,6 +25,8 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
   const [anioOpen, setAnioOpen] = useState(false)
   const [anioSearch, setAnioSearch] = useState("")
   const anioRef = useRef<HTMLDivElement>(null)
+
+  const imageUploaderRef = useRef<ImageUploaderRef>(null)
 
   const [igUrl, setIgUrl] = useState("")
   const [igLoading, setIgLoading] = useState(false)
@@ -89,7 +91,8 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
           const fetchRes = await fetch(data.thumbnail_base64);
           const blob = await fetchRes.blob();
           const file = new File([blob], "instagram_import.jpg", { type: blob.type });
-          setImageItems(prev => [...prev, { 
+          
+          imageUploaderRef.current?.addItems([{ 
             id: Date.now().toString(),
             type: "file",
             file, 
@@ -375,6 +378,7 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
       <div>
         <label className="text-sm font-medium block mb-2">Fotos del Vehículo</label>
         <ImageUploader 
+          ref={imageUploaderRef}
           initialImages={formData.fotosExistentes} 
           onChange={(items) => setImageItems(items)} 
         />
