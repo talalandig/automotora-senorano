@@ -94,7 +94,8 @@ export default function CatalogFilter({ currentTipo, currentAnio, currentKm, cur
           className="w-full px-2 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium"
         >
           <option value="">Precio</option>
-          <option value="0-25000">0 - 25 MIL</option>
+          <option value="0-15000">0 - 15 MIL</option>
+          <option value="15000-25000">15 MIL - 25 MIL</option>
           <option value="25000-55000">25 MIL - 55 MIL</option>
           <option value="55000-">Más de 55 MIL</option>
         </select>
