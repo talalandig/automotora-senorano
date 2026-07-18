@@ -102,7 +102,7 @@ export default function AutoPage() {
 
           {/* Logo (Center) */}
           <Link href="/" className="shrink-0 flex justify-center mx-2">
-            <img src="/rmlogo.jpg" alt="RM Automóviles Logo" className="h-14 sm:h-28 w-auto object-contain transition-transform hover:scale-105" />
+            <img src="/rmlogo.jpg" alt="RM Automóviles Logo" className="h-20 sm:h-28 w-auto object-contain transition-transform hover:scale-105" />
           </Link>
 
           {/* Phones (Right) */}
