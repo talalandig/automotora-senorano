@@ -82,10 +82,10 @@ export default function CatalogFilter({ currentTipo, currentAnio, currentKm, cur
           className="w-full px-2 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium"
         >
           <option value="">Kilómetros</option>
-          <option value="0-55000">0 - 55k</option>
-          <option value="55000-85000">55k - 85k</option>
-          <option value="85000-100000">85k - 100k</option>
-          <option value="100000-">100k+</option>
+          <option value="0-55000">0 - 55.000 KMS</option>
+          <option value="55000-85000">55.000 - 85.000 KMS</option>
+          <option value="85000-100000">85.000 - 100.000 KMS</option>
+          <option value="100000-">Más de 100.000 KMS</option>
         </select>
 
         <select 
@@ -94,10 +94,10 @@ export default function CatalogFilter({ currentTipo, currentAnio, currentKm, cur
           className="w-full px-2 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium"
         >
           <option value="">Precio</option>
-          <option value="0-15000">0 - 15 MIL</option>
-          <option value="15000-25000">15 MIL - 25 MIL</option>
-          <option value="25000-55000">25 MIL - 55 MIL</option>
-          <option value="55000-">Más de 55 MIL</option>
+          <option value="0-15000">U$S 0 - 15 MIL</option>
+          <option value="15000-25000">U$S 15 MIL - 25 MIL</option>
+          <option value="25000-55000">U$S 25 MIL - 55 MIL</option>
+          <option value="55000-">Más de U$S 55 MIL</option>
         </select>
       </div>
 
