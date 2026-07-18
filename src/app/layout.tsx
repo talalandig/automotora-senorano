@@ -13,14 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FPA Automóviles",
+  title: "Automotora Señorano",
   description: "Catálogo de vehículos seleccionados",
   openGraph: {
-    title: "FPA Automóviles",
+    title: "Automotora Señorano",
     description: "Catálogo de vehículos seleccionados",
     type: "website",
     locale: "es_UY",
-    siteName: "FPA Automóviles",
+    siteName: "Automotora Señorano",
   },
 };
 

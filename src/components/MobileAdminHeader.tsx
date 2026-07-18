@@ -23,7 +23,7 @@ export default function MobileAdminHeader() {
         MODO ADMINISTRADOR
       </div>
       <Link 
-        href="/adminfpa" 
+        href="/admin" 
         className="bg-[#D60006] hover:bg-[#a30005] text-white px-3 py-1.5 rounded-md font-bold text-[11px] transition-colors shadow-sm"
       >
         Ir al Panel

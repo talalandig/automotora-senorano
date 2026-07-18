@@ -18,7 +18,7 @@ export default function AdminNavButton() {
 
   return (
     <Link 
-      href="/adminfpa" 
+      href="/admin" 
       className="bg-black hover:bg-zinc-800 text-white px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-lg font-bold text-[11px] sm:text-sm flex items-center gap-1.5 transition-colors shadow-sm ml-2 sm:ml-4 shrink-0"
     >
       <Settings size={14} className="sm:w-4 sm:h-4" />
