@@ -26,6 +26,9 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
   const [anioSearch, setAnioSearch] = useState("")
   const anioRef = useRef<HTMLDivElement>(null)
 
+  const [igUrl, setIgUrl] = useState("")
+  const [igLoading, setIgLoading] = useState(false)
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (marcaRef.current && !marcaRef.current.contains(event.target as Node)) {
@@ -57,6 +60,48 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const importFromInstagram = async () => {
+    if (!igUrl || !igUrl.includes('instagram.com/p/')) {
+      alert("Por favor ingresa un link válido de una publicación de Instagram");
+      return;
+    }
+    
+    setIgLoading(true);
+    try {
+      const res = await fetch('/api/instagram/import', {
+        method: 'POST',
+        body: JSON.stringify({ url: igUrl }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const data = await res.json();
+      
+      if (data.success) {
+        if (data.description) {
+          setFormData(prev => ({
+            ...prev,
+            descripcion: prev.descripcion ? prev.descripcion + "\n\n" + data.description : data.description
+          }));
+        }
+        
+        if (data.thumbnail_base64) {
+          const fetchRes = await fetch(data.thumbnail_base64);
+          const blob = await fetchRes.blob();
+          const file = new File([blob], "instagram_import.jpg", { type: blob.type });
+          setImageItems(prev => [...prev, { file, preview: data.thumbnail_base64 }]);
+        }
+        
+        alert("Importado con éxito. ¡Revisá la descripción y la foto!");
+        setIgUrl("");
+      } else {
+        alert(data.error || "Error al importar");
+      }
+    } catch (error) {
+      alert("Error de conexión al importar desde Instagram");
+    } finally {
+      setIgLoading(false);
+    }
   }
 
   const handleSelect = (name: string, value: string | null) => {
@@ -128,6 +173,29 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto px-1">
+      
+      {/* Importar de Instagram */}
+      <div className="bg-gradient-to-r from-pink-50 to-orange-50 p-4 rounded-lg border border-pink-100 flex flex-col sm:flex-row gap-3 items-center">
+        <div className="flex-1 w-full">
+          <label className="text-sm font-semibold text-pink-900 mb-1 block">Importar desde Instagram (Link del post)</label>
+          <Input 
+            type="url" 
+            placeholder="https://www.instagram.com/p/..." 
+            value={igUrl}
+            onChange={(e) => setIgUrl(e.target.value)}
+            className="border-pink-200 focus-visible:ring-pink-500 bg-white"
+          />
+        </div>
+        <Button 
+          type="button" 
+          onClick={importFromInstagram} 
+          disabled={igLoading || !igUrl}
+          className="w-full sm:w-auto mt-5 sm:mt-0 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-sm"
+        >
+          {igLoading ? "Importando..." : "Extraer Datos"}
+        </Button>
+      </div>
+
       <div className="grid grid-cols-2 gap-4">
         <div ref={marcaRef} className="relative">
           <label className="text-sm font-medium mb-1 block">Marca</label>
