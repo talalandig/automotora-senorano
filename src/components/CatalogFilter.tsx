@@ -38,15 +38,26 @@ export default function CatalogFilter({ currentTipo, currentAnio, currentKm, cur
   }
 
   return (
-    <div className="bg-white p-3 sm:p-4 rounded-xl border border-zinc-200 shadow-sm mb-8 flex flex-row gap-2 sm:gap-4 items-center justify-between">
-      <div className="flex items-center gap-2 text-zinc-500 font-medium shrink-0">
-        <Filter size={18} /> <span className="hidden sm:inline">Filtros</span>
+    <div className="bg-white p-3 sm:p-4 rounded-xl border border-zinc-200 shadow-sm mb-8 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-between">
+      <div className="flex items-center justify-between w-full sm:w-auto gap-2">
+        <div className="flex items-center gap-2 text-zinc-500 font-medium shrink-0">
+          <Filter size={18} /> <span className="hidden sm:inline">Filtros</span>
+        </div>
+        <button 
+          onClick={handleClear}
+          className={`sm:hidden px-3 py-1 bg-zinc-100 text-zinc-600 text-xs font-medium rounded-md transition-opacity ${
+            (currentTipo || currentAnio || currentKm || currentPrecio) ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+        >
+          Limpiar
+        </button>
       </div>
-      <div className="grid grid-cols-2 sm:flex sm:flex-row gap-1.5 sm:gap-3 w-full sm:w-auto">
+
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full sm:flex-1">
         <select 
           value={currentTipo} 
           onChange={(e) => handleFilterChange('tipo', e.target.value)}
-          className="w-full px-1 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium text-center sm:text-left"
+          className="w-full px-2 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium"
         >
           <option value="">Tipo</option>
           <option value="Auto">Auto</option>
@@ -57,7 +68,7 @@ export default function CatalogFilter({ currentTipo, currentAnio, currentKm, cur
         <select 
           value={currentAnio} 
           onChange={(e) => handleFilterChange('anio', e.target.value)}
-          className="w-full px-1 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium text-center sm:text-left"
+          className="w-full px-2 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium"
         >
           <option value="">Año</option>
           {uniqueYears.map(y => (
@@ -68,7 +79,7 @@ export default function CatalogFilter({ currentTipo, currentAnio, currentKm, cur
         <select 
           value={currentKm} 
           onChange={(e) => handleFilterChange('km', e.target.value)}
-          className="w-full px-1 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium text-center sm:text-left"
+          className="w-full px-2 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium"
         >
           <option value="">Kilómetros</option>
           <option value="0-55000">0 - 55k</option>
@@ -80,23 +91,23 @@ export default function CatalogFilter({ currentTipo, currentAnio, currentKm, cur
         <select 
           value={currentPrecio} 
           onChange={(e) => handleFilterChange('precio', e.target.value)}
-          className="w-full px-1 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium text-center sm:text-left"
+          className="w-full px-2 sm:px-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-[11px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#D60006] text-zinc-700 font-medium"
         >
           <option value="">Precio</option>
           <option value="0-25000">0 - 25 MIL</option>
           <option value="25000-55000">25 MIL - 55 MIL</option>
           <option value="55000-">Más de 55 MIL</option>
         </select>
-
-        {(currentTipo || currentAnio || currentKm || currentPrecio) && (
-          <button 
-            onClick={handleClear} 
-            className="col-span-2 sm:col-span-1 w-full px-6 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-600 font-medium rounded-lg transition-colors text-xs sm:text-sm text-center"
-          >
-            Limpiar filtros
-          </button>
-        )}
       </div>
+
+      <button 
+        onClick={handleClear}
+        className={`hidden sm:block px-6 py-2 w-36 bg-zinc-100 hover:bg-zinc-200 text-zinc-600 font-medium rounded-lg transition-opacity text-sm text-center shrink-0 ${
+          (currentTipo || currentAnio || currentKm || currentPrecio) ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        Limpiar filtros
+      </button>
     </div>
   )
 }
