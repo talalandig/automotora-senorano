@@ -62,23 +62,23 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ t
   return (
     <div className="h-screen bg-zinc-50 font-sans flex flex-col overflow-hidden">
       <header className="bg-black shrink-0 z-50 shadow-sm border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-2 sm:py-3 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col items-center justify-center gap-3 sm:gap-5">
           <Link href="/" className="flex items-center shrink-0">
             <img src="/rmlogo.jpg" alt="RM Automóviles Logo" className="h-16 sm:h-28 w-auto object-contain transition-transform hover:scale-105" />
           </Link>
-          <div className="flex items-center gap-2 sm:gap-6">
-            <div className="flex flex-col items-end sm:flex-row sm:items-center gap-1 sm:gap-6">
-              <div className="flex items-center gap-1 font-bold text-[11px] sm:text-base text-white">
+          <div className="flex items-center justify-center gap-3 sm:gap-6 w-full">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 text-center">
+              <div className="flex items-center gap-1 font-bold text-[12px] sm:text-base text-white">
                 <MapPin className="text-[#D60006] w-3 h-3 sm:w-5 sm:h-5 shrink-0" />
                 <span className="whitespace-nowrap">{siteSettings?.address || "Agraciada 1668 Salto, Uy."}</span>
               </div>
               <div className="flex items-center gap-1 sm:gap-2">
                 <Phone className="text-[#D60006] w-3 h-3 sm:w-6 sm:h-6 shrink-0" />
-                <div className="flex flex-row sm:flex-col font-bold text-[11px] sm:text-base text-white leading-tight gap-2 sm:gap-0.5 items-center sm:items-start">
+                <div className="flex flex-row font-bold text-[12px] sm:text-base text-white leading-tight gap-2 sm:gap-3 items-center">
                   <a href={`https://wa.me/${(siteSettings?.phone1 || "098 388 560").replace(/\D/g, "")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#D60006] transition-colors whitespace-nowrap">
                     {siteSettings?.phone1 || "098 388 560"}
                   </a>
-                  <span className="sm:hidden text-zinc-600 font-normal">|</span>
+                  <span className="text-zinc-600 font-normal">|</span>
                   <a href={`https://wa.me/${(siteSettings?.phone2 || "091 057 513").replace(/\D/g, "")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#D60006] transition-colors whitespace-nowrap">
                     {siteSettings?.phone2 || "091 057 513"}
                   </a>
