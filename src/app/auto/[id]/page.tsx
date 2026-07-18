@@ -247,10 +247,10 @@ export default function AutoPage() {
 
               {/* Removed description from here to put it below */}
 
-              <div className="pt-4 lg:pt-8 mt-auto bg-white lg:mb-4">
+              <div className="pt-4 mt-auto bg-white">
                 <a href={`https://wa.me/${formatWhatsAppNumber(siteSettings?.whatsapp_number || "098 388 560")}?text=${wppText}`} target="_blank" rel="noopener noreferrer" className="block">
-                  <Button className="w-full h-16 lg:h-20 text-lg lg:text-xl font-bold bg-green-500 hover:bg-green-600 text-white shadow-xl shadow-green-500/20 transition-all hover:-translate-y-1 lg:hover:-translate-y-2 rounded-xl lg:rounded-2xl">
-                    <WhatsAppIcon size={24} className="mr-3 lg:w-8 lg:h-8" />
+                  <Button className="w-full h-16 text-lg font-bold bg-green-500 hover:bg-green-600 text-white shadow-xl shadow-green-500/20 transition-all hover:-translate-y-1 rounded-xl">
+                    <WhatsAppIcon size={24} className="mr-3" />
                     Consultar por WhatsApp
                   </Button>
                 </a>
