@@ -63,28 +63,32 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ t
   return (
     <div className="h-screen bg-zinc-50 font-sans flex flex-col overflow-hidden">
       <header className="bg-black shrink-0 z-50 shadow-sm border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col items-center justify-center gap-3 sm:gap-5">
-          <Link href="/" className="flex items-center shrink-0">
-            <img src="/rmlogo.jpg" alt="RM Automóviles Logo" className="h-16 sm:h-28 w-auto object-contain transition-transform hover:scale-105" />
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-row items-center justify-between w-full">
+          {/* Address (Left) */}
+          <div className="flex flex-1 justify-start items-center gap-1">
+            <MapPin className="text-[#D60006] w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+            <span className="font-bold text-[10px] sm:text-base text-white leading-tight max-w-[100px] sm:max-w-none break-words">
+              {siteSettings?.address || "Agraciada 1668 Salto, Uy."}
+            </span>
+          </div>
+
+          {/* Logo (Center) */}
+          <Link href="/" className="shrink-0 flex justify-center mx-2">
+            <img src="/rmlogo.jpg" alt="RM Automóviles Logo" className="h-14 sm:h-28 w-auto object-contain transition-transform hover:scale-105" />
           </Link>
-          <div className="flex items-center justify-between w-full max-w-3xl">
-            <div className="flex items-center gap-1 font-bold text-[11px] sm:text-base text-white text-left">
-              <MapPin className="text-[#D60006] w-3 h-3 sm:w-5 sm:h-5 shrink-0" />
-              <span className="whitespace-nowrap">{siteSettings?.address || "Agraciada 1668 Salto, Uy."}</span>
+
+          {/* Phones (Right) */}
+          <div className="flex flex-1 justify-end items-center gap-1 sm:gap-2">
+            <Phone className="text-[#D60006] w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+            <div className="flex flex-col font-bold text-[10px] sm:text-base text-white leading-tight items-end sm:items-start text-right sm:text-left">
+              <a href={`https://wa.me/${formatWhatsAppNumber(siteSettings?.phone1 || "098 388 560")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#D60006] transition-colors whitespace-nowrap">
+                {siteSettings?.phone1 || "098 388 560"}
+              </a>
+              <a href={`https://wa.me/${formatWhatsAppNumber(siteSettings?.phone2 || "091 057 513")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#D60006] transition-colors whitespace-nowrap">
+                {siteSettings?.phone2 || "091 057 513"}
+              </a>
             </div>
-            
-            <div className="flex items-center gap-1 sm:gap-2">
-              <Phone className="text-[#D60006] w-3 h-3 sm:w-5 sm:h-5 shrink-0" />
-              <div className="flex flex-col font-bold text-[11px] sm:text-base text-white leading-tight items-end sm:items-start text-right sm:text-left">
-                <a href={`https://wa.me/${formatWhatsAppNumber(siteSettings?.phone1 || "098 388 560")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#D60006] transition-colors whitespace-nowrap">
-                  {siteSettings?.phone1 || "098 388 560"}
-                </a>
-                <a href={`https://wa.me/${formatWhatsAppNumber(siteSettings?.phone2 || "091 057 513")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#D60006] transition-colors whitespace-nowrap">
-                  {siteSettings?.phone2 || "091 057 513"}
-                </a>
-              </div>
-            </div>
-            <div className="hidden sm:block">
+            <div className="hidden sm:block ml-2">
               <AdminNavButton />
             </div>
           </div>
