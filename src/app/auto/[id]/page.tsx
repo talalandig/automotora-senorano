@@ -91,7 +91,7 @@ export default function AutoPage() {
     <div className="h-screen bg-zinc-50 flex flex-col overflow-hidden">
       {/* Global Header */}
       <header className="bg-black shrink-0 z-50 shadow-sm border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-row items-center justify-between w-full">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-3 sm:py-2 flex flex-row items-center justify-between w-full">
           {/* Address (Left) */}
           <div className="flex flex-1 justify-start items-center gap-1 pl-5 sm:pl-8 lg:pl-16">
             <MapPin className="text-[#D60006] w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
@@ -102,7 +102,7 @@ export default function AutoPage() {
 
           {/* Logo (Center) */}
           <Link href="/" className="shrink-0 flex justify-center mx-2">
-            <img src="/rmlogo.jpg" alt="RM Automóviles Logo" className="h-20 sm:h-28 w-auto object-contain transition-transform hover:scale-105" />
+            <img src="/rmlogo.jpg" alt="RM Automóviles Logo" className="h-20 sm:h-24 w-auto object-contain transition-transform hover:scale-105" />
           </Link>
 
           {/* Phones (Right) */}
