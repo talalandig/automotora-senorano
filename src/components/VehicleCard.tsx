@@ -37,11 +37,19 @@ export default function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
           )}
         </div>
         <CardContent className="px-3 py-2 sm:px-4 sm:py-3 flex flex-col flex-1">
-          <h3 className="font-bold text-base text-zinc-900 leading-tight truncate">
-            {vehicle.marca} {vehicle.modelo} {vehicle.anio}
+          <h3 className="font-bold text-base text-zinc-900 leading-tight truncate mb-1">
+            {vehicle.marca} {vehicle.modelo}
           </h3>
           
-          <div className="font-bold text-[#D60006] text-xl">U$S {formatter.format(vehicle.precio)}</div>
+          <div className="flex items-center justify-between w-full mt-1 mb-2">
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-zinc-500 text-base">{vehicle.anio}</span>
+              <span className="text-zinc-300 font-light">|</span>
+            </div>
+            <div className="font-bold text-[#D60006] text-xl text-right">
+              U$S {formatter.format(vehicle.precio)}
+            </div>
+          </div>
           
           <div className="mt-auto flex flex-wrap gap-x-3 gap-y-2 text-[11px] sm:text-xs font-medium text-zinc-500">
             <span className="flex items-center gap-1"><Gauge size={14} className="text-zinc-400" /> {vehicle.kilometraje.toLocaleString()} km</span>
