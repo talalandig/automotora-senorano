@@ -92,7 +92,7 @@ export default function AutoPage() {
       <header className="bg-white shrink-0 z-50 shadow-sm border-b border-zinc-200">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-2 sm:py-3 flex items-center justify-between">
           <Link href="/" className="flex items-center shrink-0">
-            <img src="/logo11auto.jpg" alt="RM Automóviles Logo" className="h-10 sm:h-16 w-auto object-contain transition-transform hover:scale-105" />
+            <img src="/rmlogo.jpg" alt="RM Automóviles Logo" className="h-10 sm:h-16 w-auto object-contain transition-transform hover:scale-105" />
           </Link>
           <div className="flex items-center gap-2 sm:gap-6">
             <div className="flex flex-col items-end sm:flex-row sm:items-center gap-1 sm:gap-6">
