@@ -8,24 +8,34 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'URL de Instagram inválida (debe contener instagram.com/p/)' }, { status: 400 });
     }
 
-    const oembedUrl = `https://graph.facebook.com/v25.0/instagram_oembed?url=${encodeURIComponent(url)}`;
+    const apiUrl = `https://api.microlink.io/?url=${encodeURIComponent(url)}`;
 
-    const response = await fetch(oembedUrl, { 
+    const response = await fetch(apiUrl, { 
       headers: { 'User-Agent': 'Mozilla/5.0' } 
     });
 
     if (!response.ok) {
       const errData = await response.text();
-      console.error("Instagram oEmbed Error:", errData);
-      return NextResponse.json({ error: 'No se pudo obtener la publicación (puede ser privada, restringida o requerir token de Meta)' }, { status: 400 });
+      console.error("Microlink Error:", errData);
+      return NextResponse.json({ error: 'No se pudo obtener la publicación de Instagram (puede ser privada)' }, { status: 400 });
     }
 
-    const data = await response.json();
+    const json = await response.json();
+    const data = json.data || {};
 
+    // Limpiar el texto extra que agrega Microlink ("X likes - user on Date: “Texto”")
+    let rawDescription = data.description || '';
+    const descMatch = rawDescription.match(/“([\s\S]*?)”\.?$/);
+    if (descMatch) {
+      rawDescription = descMatch[1];
+    }
+
+    let thumbnail_url = data.image?.url || null;
     let thumbnail_base64 = null;
-    if (data.thumbnail_url) {
+    
+    if (thumbnail_url) {
       try {
-        const imgRes = await fetch(data.thumbnail_url);
+        const imgRes = await fetch(thumbnail_url);
         const arrayBuffer = await imgRes.arrayBuffer();
         const base64 = Buffer.from(arrayBuffer).toString('base64');
         const mimeType = imgRes.headers.get('content-type') || 'image/jpeg';
@@ -37,10 +47,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      html: data.html,
-      thumbnail_url: data.thumbnail_url,
+      thumbnail_url: thumbnail_url,
       thumbnail_base64,
-      description: data.title || '',
+      description: rawDescription,
       url: url
     });
 
