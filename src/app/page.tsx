@@ -65,11 +65,13 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ t
       <header className="bg-black shrink-0 z-50 shadow-sm border-b border-zinc-800">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-3 sm:py-2 flex flex-row items-center justify-between w-full">
           {/* Address (Left) */}
-          <div className="flex flex-1 justify-start items-center gap-1 pl-5 sm:pl-8 lg:pl-16">
+          <div className="flex flex-1 justify-start items-center gap-1 sm:gap-2 pl-5 sm:pl-8 lg:pl-16">
             <MapPin className="text-[#D60006] w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-            <span className="font-bold text-[10px] sm:text-base text-white leading-tight max-w-[100px] sm:max-w-none break-words">
-              {siteSettings?.address || "Agraciada 1668 Salto, Uy."}
-            </span>
+            <div className="font-bold text-[10px] sm:text-base text-white leading-tight flex flex-col sm:flex-row sm:items-center max-w-[100px] sm:max-w-none">
+              <span className="break-words sm:whitespace-nowrap">{siteSettings?.address || "Agraciada 1668"}</span>
+              <span className="block sm:hidden text-zinc-300">Salto, Uy.</span>
+              <span className="hidden sm:inline">, Salto, Uy.</span>
+            </div>
           </div>
 
           {/* Logo (Center) */}
@@ -80,10 +82,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ t
           {/* Phones (Right) */}
           <div className="flex flex-1 justify-end items-center gap-1 sm:gap-2 pr-5 sm:pr-8 lg:pr-16">
             <Phone className="text-[#D60006] w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-            <div className="flex flex-col font-bold text-[10px] sm:text-base text-white leading-tight items-end sm:items-start text-right sm:text-left">
+            <div className="flex flex-col sm:flex-row font-bold text-[10px] sm:text-base text-white leading-tight items-end sm:items-center text-right sm:gap-2">
               <a href={`https://wa.me/${formatWhatsAppNumber(siteSettings?.phone1 || "098 388 560")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#D60006] transition-colors whitespace-nowrap">
                 {siteSettings?.phone1 || "098 388 560"}
               </a>
+              <span className="hidden sm:inline text-zinc-500">|</span>
               <a href={`https://wa.me/${formatWhatsAppNumber(siteSettings?.phone2 || "091 057 513")}`} target="_blank" rel="noopener noreferrer" className="hover:text-[#D60006] transition-colors whitespace-nowrap">
                 {siteSettings?.phone2 || "091 057 513"}
               </a>
