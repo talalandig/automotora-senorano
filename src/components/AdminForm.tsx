@@ -183,7 +183,7 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
     <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto px-1">
       
       {/* Importar de Instagram */}
-      <div className="bg-gradient-to-r from-pink-50 to-orange-50 p-4 rounded-lg border border-pink-100 flex flex-col sm:flex-row gap-3 items-center">
+      <div className="bg-gradient-to-r from-pink-50 to-orange-50 p-4 rounded-lg border border-pink-100 flex flex-col sm:flex-row gap-3 sm:items-end">
         <div className="flex-1 w-full">
           <label className="text-sm font-semibold text-pink-900 mb-1 block">Importar desde Instagram (Link del post)</label>
           <Input 
