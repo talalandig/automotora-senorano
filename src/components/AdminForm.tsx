@@ -357,12 +357,12 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
           </Select>
         </div>
         <div className="md:col-span-2">
-          <label className="text-sm font-medium">Otros detalles / Equipamiento</label>
-          <Textarea name="otros" value={formData.otros} onChange={handleChange} className="h-20" placeholder="Ej: Aire acondicionado, Dirección hidráulica..." />
-        </div>
-        <div className="md:col-span-2">
           <label className="text-sm font-medium">Descripción Principal</label>
           <Textarea required name="descripcion" value={formData.descripcion} onChange={handleChange} className="h-32" />
+        </div>
+        <div className="md:col-span-2">
+          <label className="text-sm font-medium">Otros:</label>
+          <Textarea name="otros" value={formData.otros} onChange={handleChange} className="h-20" placeholder="Ej: Aire acondicionado, Dirección hidráulica..." />
         </div>
       </div>
 

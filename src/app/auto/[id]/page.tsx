@@ -260,23 +260,23 @@ export default function AutoPage() {
 
           {/* Description & Equipamiento section */}
           <div className="lg:col-span-12 mt-4 lg:mt-6 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-zinc-100">
+            <div className={vehicle.otros ? "mb-10 pb-10 border-b border-zinc-100" : ""}>
+              <h3 className="text-lg font-bold text-zinc-900 mb-4">Descripción general</h3>
+              <p className="text-zinc-600 leading-relaxed whitespace-pre-wrap text-base">
+                {vehicle.descripcion || 'Sin descripción adicional.'}
+              </p>
+            </div>
+
             {vehicle.otros && (
-              <div className="mb-10 pb-10 border-b border-zinc-100">
+              <div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-4 flex items-center gap-2">
-                  <Check size={22} className="text-[#D60006]" /> Equipamiento / Otros
+                  <Check size={22} className="text-[#D60006]" /> Otros:
                 </h3>
                 <p className="text-zinc-600 leading-relaxed whitespace-pre-wrap pl-8 text-base">
                   {vehicle.otros}
                 </p>
               </div>
             )}
-
-            <div>
-              <h3 className="text-lg font-bold text-zinc-900 mb-4">Descripción general</h3>
-              <p className="text-zinc-600 leading-relaxed whitespace-pre-wrap text-base">
-                {vehicle.descripcion || 'Sin descripción adicional.'}
-              </p>
-            </div>
           </div>
         </div>
       </div>
