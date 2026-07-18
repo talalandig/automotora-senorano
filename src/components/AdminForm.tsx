@@ -87,20 +87,11 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
           }));
         }
         
-        if (data.thumbnail_base64) {
-          const fetchRes = await fetch(data.thumbnail_base64);
-          const blob = await fetchRes.blob();
-          const file = new File([blob], "instagram_import.jpg", { type: blob.type });
-          
-          imageUploaderRef.current?.addItems([{ 
-            id: Date.now().toString(),
-            type: "file",
-            file, 
-            preview: data.thumbnail_base64 
-          }]);
+        if (data.description) {
+          setFormData(prev => ({ ...prev, descripcion: data.description }));
         }
         
-        alert("Importado con éxito. ¡Revisá la descripción y la foto!");
+        alert("¡Descripción extraída con éxito!");
         setIgUrl("");
       } else {
         alert(data.error || "Error al importar");
@@ -185,7 +176,7 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
       {/* Importar de Instagram */}
       <div className="bg-gradient-to-r from-pink-50 to-orange-50 p-4 rounded-lg border border-pink-100 flex flex-col sm:flex-row gap-3 sm:items-end">
         <div className="flex-1 w-full">
-          <label className="text-sm font-semibold text-pink-900 mb-1 block">Importar desde Instagram (Link del post)</label>
+          <label className="text-sm font-semibold text-pink-900 mb-1 block">Extraer Descripción de Instagram (Link del post)</label>
           <Input 
             type="url" 
             placeholder="https://www.instagram.com/p/..." 
@@ -200,7 +191,7 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
           disabled={igLoading || !igUrl}
           className="w-full sm:w-auto mt-5 sm:mt-0 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white shadow-sm"
         >
-          {igLoading ? "Importando..." : "Extraer Datos"}
+          {igLoading ? "Extrayendo..." : "Extraer Descripción"}
         </Button>
       </div>
 

@@ -33,25 +33,11 @@ export async function POST(request: NextRequest) {
       rawDescription = descMatch[1];
     }
 
-    let thumbnail_url = data.image?.url || null;
-    let thumbnail_base64 = null;
-    
-    if (thumbnail_url) {
-      try {
-        const imgRes = await fetch(thumbnail_url);
-        const arrayBuffer = await imgRes.arrayBuffer();
-        const base64 = Buffer.from(arrayBuffer).toString('base64');
-        const mimeType = imgRes.headers.get('content-type') || 'image/jpeg';
-        thumbnail_base64 = `data:${mimeType};base64,${base64}`;
-      } catch (e) {
-        console.error("Error fetching instagram thumbnail:", e);
-      }
-    }
+    // Se deshabilita la extracción de imagen para evitar miniaturas cuadradas
+    // let thumbnail_url = data.image?.url || null;
 
     return NextResponse.json({
       success: true,
-      thumbnail_url: thumbnail_url,
-      thumbnail_base64,
       description: rawDescription,
       url: url
     });
