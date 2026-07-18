@@ -13,14 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Automotora Señorano",
+  title: "RM Automóviles",
   description: "Catálogo de vehículos seleccionados",
   openGraph: {
-    title: "Automotora Señorano",
+    title: "RM Automóviles",
     description: "Catálogo de vehículos seleccionados",
     type: "website",
     locale: "es_UY",
-    siteName: "Automotora Señorano",
+    siteName: "RM Automóviles",
   },
 };
 
