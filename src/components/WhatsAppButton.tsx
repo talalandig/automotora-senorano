@@ -2,8 +2,10 @@
 
 import WhatsAppIcon from "./WhatsAppIcon"
 
+import { formatWhatsAppNumber } from "@/lib/utils"
+
 export default function WhatsAppButton({ phoneNumber }: { phoneNumber?: string }) {
-  const finalNumber = (phoneNumber || "59898388560").replace(/\D/g, "")
+  const finalNumber = formatWhatsAppNumber(phoneNumber || "59898388560")
   return (
     <a
       href={`https://wa.me/${finalNumber}`}
