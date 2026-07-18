@@ -45,7 +45,7 @@ export default function CatalogFilter({ currentTipo, currentAnio, currentKm, cur
         </div>
         <button 
           onClick={handleClear}
-          className={`sm:hidden px-3 py-1 bg-zinc-100 text-zinc-600 text-xs font-medium rounded-md transition-opacity ${
+          className={`sm:hidden px-3 py-1 bg-black text-white text-xs font-medium rounded-md transition-opacity ${
             (currentTipo || currentAnio || currentKm || currentPrecio) ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >
@@ -102,7 +102,7 @@ export default function CatalogFilter({ currentTipo, currentAnio, currentKm, cur
 
       <button 
         onClick={handleClear}
-        className={`hidden sm:block px-6 py-2 w-36 bg-zinc-100 hover:bg-zinc-200 text-zinc-600 font-medium rounded-lg transition-opacity text-sm text-center shrink-0 ${
+        className={`hidden sm:block px-6 py-2 w-36 bg-black hover:bg-zinc-800 text-white font-medium rounded-lg transition-opacity text-sm text-center shrink-0 ${
           (currentTipo || currentAnio || currentKm || currentPrecio) ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
