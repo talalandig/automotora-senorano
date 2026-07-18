@@ -96,9 +96,9 @@ export default function AutoPage() {
           <div className="flex flex-1 justify-start items-center gap-1 sm:gap-2 pl-5 sm:pl-8 lg:pl-16">
             <MapPin className="text-[#D60006] w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
             <div className="font-bold text-[10px] sm:text-base text-white leading-tight flex flex-col sm:flex-row sm:items-center max-w-[100px] sm:max-w-none">
-              <span className="break-words sm:whitespace-nowrap">{siteSettings?.address || "Agraciada 1668"}</span>
+              <span className="break-words sm:whitespace-nowrap">{siteSettings?.address || "Cervantes 945"}</span>
               <span className="block sm:hidden text-zinc-300">Salto, Uy.</span>
-              <span className="hidden sm:inline">, Salto, Uy.</span>
+              <span className="hidden sm:inline"> Salto, Uy.</span>
             </div>
           </div>
 
