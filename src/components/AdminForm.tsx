@@ -89,7 +89,12 @@ export default function AdminForm({ vehicle, onSuccess, onCancel }: { vehicle?: 
           const fetchRes = await fetch(data.thumbnail_base64);
           const blob = await fetchRes.blob();
           const file = new File([blob], "instagram_import.jpg", { type: blob.type });
-          setImageItems(prev => [...prev, { file, preview: data.thumbnail_base64 }]);
+          setImageItems(prev => [...prev, { 
+            id: Date.now().toString(),
+            type: "file",
+            file, 
+            preview: data.thumbnail_base64 
+          }]);
         }
         
         alert("Importado con éxito. ¡Revisá la descripción y la foto!");
